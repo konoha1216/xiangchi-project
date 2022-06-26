@@ -1,0 +1,10 @@
+server:
+  port: 8088
+spring:
+  application:
+    name: xiangchi
+  datasource:
+    url: jdbc:mysql://localhost:3306/xiangchi?useUnicode=true&characterEncoding=utf8&autoReconnect=true&useSSL=false&serverTimeZone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 19961216

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiangchi.xiangchiproject.staff.repository.mysql.StaffMapper">
+    <resultMap id="staffMap" type="com.xiangchi.xiangchiproject.staff.model.po.StaffPo">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="comment" column="comment"/>
+        <result property="isAdmin" column="is_admin"/>
+        <result property="isVisit" column="is_visit"/>
+        <result property="isDeleted" column="is_deleted"/>
+    </resultMap>
+
+    <sql id="columns">
+        `id`, `name`, `code`,`password`, `phone`, `email`, `comment`, `is_admin`, `is_visit`, `is_deleted`
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="po.id">
+        insert into staff
+        (`name`, `code`, `password`, `phone`, `email`, `comment`, `is_admin`, `is_visit`)
+        value
+        (#{po.name}, #{po.code}, #{po.passWord}, #{po.phone}, #{po.email}, #{po.comment}, #{po.isAdmin}, #{po.isVisit})
+    </insert>
+    <update id="update">
+        update staff set
+        `name` = #{po.name}, `code` = #{po.code}, `phone` = #{po.phone}, `email` = #{po.email}, `comment` = #{po.comment}
+        where id = #{po.id}
+    </update>
+
+    <select id="queryById" resultMap="staffMap">
+        select <include refid="columns"/>
+        from staff
+        where is_deleted = 0 and id = #{id}
+    </select>
+    <select id="queryByCode" resultMap="staffMap">
+        select <include refid="columns"/>
+        from staff
+        where is_deleted = 0 and code = #{code}
+    </select>
+    <select id="queryByCodeAndPassWordStaffPo" resultMap="staffMap">
+        select <include refid="columns"/>
+        from staff
+        where is_deleted = 0 and code = #{code} and password = #{password}
+    </select>
+</mapper>
