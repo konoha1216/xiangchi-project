@@ -65,10 +65,6 @@ public class StaffController implements StaffApi {
         if (!checkResult.isRight()) {
             return ApiRestResponse.error(ResponseCodeEnum.FORBIDDEN, checkResult.getMessage());
         }
-        StaffDto sessionStaff = (StaffDto) session.getAttribute(Constant.XIANGCHI_STAFF);
-        if (null == sessionStaff || !Objects.equals(sessionStaff.getId(), param.getId())) {
-            return ApiRestResponse.error(ResponseCodeEnum.NOT_LOGIN, "请先登录");
-        }
         ResultInfo<Long> updateResult = staffService.update(param);
         if (!updateResult.isRight()) {
             return ApiRestResponse.error(ResponseCodeEnum.INTERNAL_SERVER_ERROR, updateResult.getMessage());
