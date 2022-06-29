@@ -7,7 +7,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.util.StringUtils;
 
 @Data
 @Builder

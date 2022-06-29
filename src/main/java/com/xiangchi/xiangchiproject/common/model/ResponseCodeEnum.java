@@ -1,4 +1,4 @@
-package com.xiangchi.xiangchiproject.common;
+package com.xiangchi.xiangchiproject.common.model;
 
 public enum ResponseCodeEnum {
     SUCCESS(200, "success"),

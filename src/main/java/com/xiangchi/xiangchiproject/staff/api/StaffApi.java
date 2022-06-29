@@ -1,6 +1,6 @@
 package com.xiangchi.xiangchiproject.staff.api;
 
-import com.xiangchi.xiangchiproject.common.ApiRestResponse;
+import com.xiangchi.xiangchiproject.common.model.ApiRestResponse;
 import com.xiangchi.xiangchiproject.staff.model.dto.StaffDto;
 import com.xiangchi.xiangchiproject.staff.model.param.StaffLoginParam;
 import com.xiangchi.xiangchiproject.staff.model.param.StaffRegistryParam;

@@ -1,5 +1,6 @@
 package com.xiangchi.xiangchiproject.common;
 
+import com.xiangchi.xiangchiproject.common.model.ResponseCodeEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

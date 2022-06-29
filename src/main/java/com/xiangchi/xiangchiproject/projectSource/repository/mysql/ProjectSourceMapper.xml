@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiangchi.xiangchiproject.projectSource.repository.mysql.ProjectSourceMapper">
+    <resultMap id="projectSourceMap" type="com.xiangchi.xiangchiproject.projectSource.model.po.ProjectSourcePo">
+        <id property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="comment" column="comment"/>
+    </resultMap>
+
+    <sql id="columns">
+        `id`, `name`, `code`, `comment`
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="po.id">
+        insert into project_source
+        (`name`, `code`, `comment`)
+        value
+        (#{po.name}, #{po.code}, #{po.comment})
+    </insert>
+
+</mapper>

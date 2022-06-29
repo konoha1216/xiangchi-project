@@ -1,4 +1,4 @@
-package com.xiangchi.xiangchiproject.common;
+package com.xiangchi.xiangchiproject.common.model;
 
 import lombok.Data;
 

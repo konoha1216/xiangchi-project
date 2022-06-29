@@ -1,8 +1,8 @@
 package com.xiangchi.xiangchiproject.staff.controller;
 
-import com.xiangchi.xiangchiproject.common.ApiRestResponse;
+import com.xiangchi.xiangchiproject.common.model.ApiRestResponse;
 import com.xiangchi.xiangchiproject.common.Constant;
-import com.xiangchi.xiangchiproject.common.ResponseCodeEnum;
+import com.xiangchi.xiangchiproject.common.model.ResponseCodeEnum;
 import com.xiangchi.xiangchiproject.staff.api.StaffApi;
 import com.xiangchi.xiangchiproject.staff.model.dto.StaffDto;
 import com.xiangchi.xiangchiproject.staff.model.param.StaffLoginParam;
@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.util.Objects;
 
 @RestController
 @Slf4j
