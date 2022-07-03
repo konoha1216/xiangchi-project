@@ -19,4 +19,51 @@
         (#{po.name}, #{po.code}, #{po.comment})
     </insert>
 
+    <update id="update">
+        update project_source
+        set `name` = #{po.name}, `code` = #{po.code}, `comment` = #{po.comment}
+        where `id` = #{po.id} and `is_deleted` = 0
+    </update>
+
+    <update id="delete">
+        update project_source
+        set `is_deleted` = 1
+        where `id` in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="queryOne" resultMap="projectSourceMap">
+        select <include refid="columns"/>
+        from project_source
+        where `id` = #{id}
+        and `is_deleted` = 0
+    </select>
+
+    <select id="pageByParam" resultMap="projectSourceMap">
+        select <include refid="columns"/>
+        from project_source
+        where `is_deleted` = 0
+        <include refid="paramSql"/>
+        order by `id` desc
+        limit ${param.pageParam.pageLen} offset ${param.pageparam.pageNum}
+    </select>
+
+    <select id="countByParam" resultType="Integer">
+        select count(*)
+        from project_source
+        where `is_deleted` = 0
+        <include refid="paramSql"/>
+    </select>
+
+    <sql id="paramSql">
+        <if test = "param.name != null and param.name != ''">
+            and `name` like concat('%', #{param.name}, '%')
+        </if>
+        <if test = "param.code != null and param.code != ''">
+            and `code` like concat('%', #{param.code}, '%')
+        </if>
+    </sql>
+
 </mapper>

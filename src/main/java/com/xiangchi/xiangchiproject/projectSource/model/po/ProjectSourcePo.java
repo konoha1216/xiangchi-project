@@ -2,12 +2,12 @@ package com.xiangchi.xiangchiproject.projectSource.model.po;
 
 import com.xiangchi.xiangchiproject.projectSource.model.dto.ProjectSourceDetailDto;
 import com.xiangchi.xiangchiproject.projectSource.model.param.ProjectSourceCreateParam;
+import com.xiangchi.xiangchiproject.projectSource.model.param.ProjectSourceUpdateParam;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.apache.logging.log4j.util.Strings;
-import org.springframework.util.StringUtils;
 
 import java.util.Optional;
 
@@ -33,6 +33,18 @@ public class ProjectSourcePo {
                 .name(createParam.getName())
                 .code(createParam.getCode())
                 .comment(Optional.ofNullable(createParam.getComment()).orElse(Strings.EMPTY))
+                .build();
+    }
+
+    public static ProjectSourcePo convertFromUpdateParam(ProjectSourceUpdateParam updateRapram) {
+        if (null == updateRapram) {
+            return null;
+        }
+        return ProjectSourcePo.builder()
+                .id(updateRapram.getId())
+                .name(updateRapram.getName())
+                .code(updateRapram.getCode())
+                .comment(Optional.ofNullable(updateRapram.getComment()).orElse(Strings.EMPTY))
                 .build();
     }
 
