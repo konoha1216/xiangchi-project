@@ -36,15 +36,15 @@ public class ProjectSourcePo {
                 .build();
     }
 
-    public static ProjectSourcePo convertFromUpdateParam(ProjectSourceUpdateParam updateRapram) {
-        if (null == updateRapram) {
+    public static ProjectSourcePo convertFromUpdateParam(ProjectSourceUpdateParam updateParam) {
+        if (null == updateParam) {
             return null;
         }
         return ProjectSourcePo.builder()
-                .id(updateRapram.getId())
-                .name(updateRapram.getName())
-                .code(updateRapram.getCode())
-                .comment(Optional.ofNullable(updateRapram.getComment()).orElse(Strings.EMPTY))
+                .id(updateParam.getId())
+                .name(updateParam.getName())
+                .code(updateParam.getCode())
+                .comment(Optional.ofNullable(updateParam.getComment()).orElse(Strings.EMPTY))
                 .build();
     }
 

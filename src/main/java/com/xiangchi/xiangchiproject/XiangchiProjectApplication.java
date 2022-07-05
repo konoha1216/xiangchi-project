@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("**/repository/mysql")
+@MapperScan("**/mysql")
 public class XiangchiProjectApplication {
 
     public static void main(String[] args) {
