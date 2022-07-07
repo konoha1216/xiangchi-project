@@ -35,4 +35,56 @@
             #{id}
         </foreach>
     </update>
+
+    <select id="pageByParam">
+        select <include refid="columns"/>
+        from cost_detail
+        where `is_deleted` = 0
+        <include refid="paramSql"/>
+        order by
+        <choose>
+            <when test="param.orderByCost != null and param.orderByCost == 1">
+                `cost`
+            </when>
+            <otherwise>
+                `id`
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="param.orderByCostOrder != null and param.orderByCostOrder == 0">
+                desc
+            </when>
+            <when test="param.orderByCostOrder != null and param.orderByCostOrder == 1">
+                asc
+            </when>
+            <otherwise>
+                desc
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="countByParam" resultType="Integer">
+        select count(*)
+        from cost_detail
+        where is_deleted = 0
+        <include refid="paramSql"/>
+    </select>
+
+    <sql id="paramSql">
+        <if test="param.typeList != null and param.typeList.size() > 0">
+            and `type` in
+            <foreach collection="param.typeList" item="type" open="(" close=")" separator=",">
+                #{type}
+            </foreach>
+        </if>
+        <if test="param.otherTypeList != null and param.otherTypeList.size() > 0">
+            and `other_type` in
+            <foreach collection="param.otherTypeList" item="other_type" open="(" close=")" separator=",">
+                #{other_type}
+            </foreach>
+        </if>
+        <if test="param.projectOrderId != null">
+            and `project_order_id` = #{param.projectOrderId}
+        </if>
+    </sql>
 </mapper>
