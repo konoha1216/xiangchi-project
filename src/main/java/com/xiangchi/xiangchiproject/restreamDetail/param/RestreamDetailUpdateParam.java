@@ -1,4 +1,4 @@
-package com.xiangchi.xiangchiproject.costDetail.param;
+package com.xiangchi.xiangchiproject.restreamDetail.param;
 
 import com.xiangchi.xiangchiproject.utils.ResultInfo;
 import lombok.*;
@@ -8,7 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class CostDetailUpdateParam extends CostDetailCreateParam{
+public class RestreamDetailUpdateParam extends RestreamDetailCreateParam{
 
     private Long id;
 

@@ -1,4 +1,4 @@
-package com.xiangchi.xiangchiproject.costDetail.dto;
+package com.xiangchi.xiangchiproject.restreamDetail.dto;
 
 import com.xiangchi.xiangchiproject.common.model.PageInfo;
 import lombok.AllArgsConstructor;
@@ -12,10 +12,9 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CostDetailPageDto {
+public class RestreamDetailPageDto {
 
-    private List<CostDetailDto> costDetailDtoList;
+    private List<RestreamDetailDto> restreamDetailDtoList;
 
     private PageInfo pageInfo;
-
 }

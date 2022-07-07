@@ -36,7 +36,7 @@
         </foreach>
     </update>
 
-    <select id="pageByParam">
+    <select id="pageByParam" resultMap="costDetailMap">
         select <include refid="columns"/>
         from cost_detail
         where `is_deleted` = 0

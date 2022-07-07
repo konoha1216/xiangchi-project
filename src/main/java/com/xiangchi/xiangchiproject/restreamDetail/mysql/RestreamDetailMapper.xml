@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiangchi.xiangchiproject.restreamDetail.mysql.RestreamDetailMapper">
+    <resultMap id="restreamDetailMap" type="com.xiangchi.xiangchiproject.restreamDetail.po.RestreamDetailPo">
+        <id property="id" column="id"/>
+        <result property="qty" column="qty"/>
+        <result property="date" column="date"/>
+        <result property="projectOrderId" column="project_order_id"/>
+        <result property="comment" column="comment"/>
+    </resultMap>
+
+    <sql id="columns">
+        `id`, `qty`, `date`, `project_order_id`, `comment`
+    </sql>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="po.id">
+        insert into restream_detail
+        (`qty`, `date`, `project_order_id`, `comment`)
+        value
+        (#{po.qty}, #{po.date}, #{po.projectOrderId}, #{po.comment})
+    </insert>
+
+    <update id="update">
+        update restream_detail
+        set `qty` = #{po.qty}, `date` = #{po.date}, `project_order_id` = #{po.projectOrderId}, `comment` = #{po.comment}
+        where `id` = #{po.id} and `is_deleted` = 0
+    </update>
+
+    <update id="delete">
+        update restream_detail
+        set `is_deleted` = 1
+        where `id` in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </update>
+
+    <select id="pageByParam" resultMap="restreamDetailMap">
+        select <include refid="columns"/>
+        from restream_detail
+        where `is_deleted` = 0
+        <include refid="paramSql"/>
+        order by
+        <choose>
+            <when test="param.orderBy != null and param.orderByQty == 1">
+                `qty`
+            </when>
+            <when test="param.orderBy != null and param.orderByQty == 2">
+                `date`
+            </when>
+            <otherwise>
+                `id`
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="param.orderByOrder != null and param.orderByOrder == 0">
+                desc
+            </when>
+            <when test="param.orderByOrder != null and param.orderByOrder == 1">
+                asc
+            </when>
+            <otherwise>
+                desc
+            </otherwise>
+        </choose>
+    </select>
+
+    <select id="countByParam" resultType="Integer">
+        select count(*)
+        from restream_detail
+        where is_deleted = 0
+        <include refid="paramSql"/>
+    </select>
+
+    <sql id="paramSql">
+        <if test="param.projectOrderId != null">
+            and `project_order_id` = #{param.projectOrderId}
+        </if>
+    </sql>
+</mapper>
