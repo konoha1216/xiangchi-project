@@ -27,38 +27,21 @@ public class CostDetailServiceImpl implements CostDetailService{
     @Transactional(rollbackFor = Exception.class)
     @Override
     public ResultInfo<Long> createOne(CostDetailCreateParam param) {
-        Long id;
-        try {
-            id = costDetailRepository.insertOne(CostDetailPo.convertFromCreateParam(param));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        Long id = costDetailRepository.insertOne(CostDetailPo.convertFromCreateParam(param));
         return ResultInfo.success(id);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public ResultInfo<Long> updateOne(CostDetailUpdateParam param) {
-        Long id;
-        try {
-            id = costDetailRepository.updateOne(CostDetailPo.convertFromUpdateParam(param));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        Long id = costDetailRepository.updateOne(CostDetailPo.convertFromUpdateParam(param));
         return ResultInfo.success(id);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public ResultInfo deleteOne(Long id) {
-        try {
-            costDetailRepository.deleteOne(Collections.singleton(id));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        costDetailRepository.deleteOne(Collections.singleton(id));
         return ResultInfo.success();
     }
 

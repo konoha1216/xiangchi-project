@@ -31,50 +31,28 @@ public class ContactServiceImpl implements ContactService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultInfo<Long> createOne(ContactCreateParam param) {
-        Long id;
-        try {
-            id = contactRepository.insertOne(ContactPo.convertFromCreateParam(param));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        Long id = contactRepository.insertOne(ContactPo.convertFromCreateParam(param));
         return ResultInfo.success(id);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultInfo<Long> updateOne(ContactUpdateParam param) {
-        Long id;
-        try {
-            id = contactRepository.updateOne(ContactPo.convertFromUpdateParam(param));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        Long id = contactRepository.updateOne(ContactPo.convertFromUpdateParam(param));
         return ResultInfo.success(id);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultInfo deleteOne(Long id) {
-        try {
-            contactRepository.delete(Collections.singleton(id));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        contactRepository.delete(Collections.singleton(id));
         return ResultInfo.success();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultInfo deleteAll(List<Long> ids) {
-        try {
-            contactRepository.delete(new HashSet<>(ids));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        contactRepository.delete(new HashSet<>(ids));
         return ResultInfo.success();
     }
 

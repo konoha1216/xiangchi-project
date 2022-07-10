@@ -1,5 +1,6 @@
 package com.xiangchi.xiangchiproject.customer;
 
+import com.xiangchi.xiangchiproject.common.XiangchiException;
 import com.xiangchi.xiangchiproject.common.model.PageInfo;
 import com.xiangchi.xiangchiproject.customer.dto.CustomerDto;
 import com.xiangchi.xiangchiproject.customer.dto.CustomerPageDto;
@@ -27,38 +28,21 @@ public class CustomerServiceImpl implements CustomerService{
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultInfo<Long> createOne(CustomerCreateParam param) {
-        Long id;
-        try {
-            id = customerRepository.insertOne(CustomerPo.convertFromCreateParam(param));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        Long id = customerRepository.insertOne(CustomerPo.convertFromCreateParam(param));
         return ResultInfo.success(id);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultInfo<Long> updateOne(CustomerUpdateParam param) {
-        Long id;
-        try {
-            id = customerRepository.updateOne(CustomerPo.convertFromUpdateParam(param));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        Long id = customerRepository.updateOne(CustomerPo.convertFromUpdateParam(param));
         return ResultInfo.success(id);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultInfo deleteOne(Long id) {
-        try {
-            customerRepository.deleteOne(Collections.singleton(id));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        customerRepository.deleteOne(Collections.singleton(id));
         return ResultInfo.success();
     }
 

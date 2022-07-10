@@ -27,38 +27,21 @@ public class RestreamDetailServiceImpl implements RestreamDetailService{
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultInfo<Long> createOne(RestreamDetailCreateParam param) {
-        Long id;
-        try {
-            id = restreamDetailRepository.insertOne(RestreamDetailPo.convertFromCreateParam(param));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        Long id = restreamDetailRepository.insertOne(RestreamDetailPo.convertFromCreateParam(param));
         return ResultInfo.success(id);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultInfo<Long> updateOne(RestreamDetailUpdateParam param) {
-        Long id;
-        try {
-            id = restreamDetailRepository.updateOne(RestreamDetailPo.convertFromUpdateParam(param));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        Long id = restreamDetailRepository.updateOne(RestreamDetailPo.convertFromUpdateParam(param));
         return ResultInfo.success(id);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public ResultInfo deleteOne(Long id) {
-        try {
-            restreamDetailRepository.deleteOne(Collections.singleton(id));
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return ResultInfo.error(e.getMessage());
-        }
+        restreamDetailRepository.deleteOne(Collections.singleton(id));
         return ResultInfo.success();
     }
 
