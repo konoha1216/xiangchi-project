@@ -16,6 +16,8 @@ public interface CustomerRepository {
 
     CustomerPo query(Long id);
 
+    List<CustomerPo> list(Set<Long> ids);
+
     List<CustomerPo> page(CustomerPageParam param);
 
     Integer count(CustomerPageParam param);

@@ -40,6 +40,11 @@ public class CustomerRepositoryImpl implements CustomerRepository{
     }
 
     @Override
+    public List<CustomerPo> list(Set<Long> ids) {
+        return customerMapper.list(ids);
+    }
+
+    @Override
     public List<CustomerPo> page(CustomerPageParam param) {
         if (param.getPageParam() == null) {
             param.setPageParam(PageParam.builder().pageLen(10).pageNum(0).build());

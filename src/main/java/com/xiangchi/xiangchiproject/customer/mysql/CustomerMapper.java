@@ -19,6 +19,8 @@ public interface CustomerMapper {
 
     CustomerPo query(Long id);
 
+    List<CustomerPo> list(Set<Long> ids);
+
     List<CustomerPo> pageByParam(@Param("param") CustomerPageParam param);
 
     Integer countByParam(@Param("param") CustomerPageParam param);

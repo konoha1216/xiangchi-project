@@ -40,6 +40,15 @@
         where is_deleted = 0 and `id` = #{id}
     </select>
 
+    <select id="list" resultMap="customerMap">
+        select <include refid="columns"/>
+        from customer
+        where is_deleted = 0 and id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
     <select id="pageByParam" resultMap="customerMap">
         select <include refid="columns"/>
         from customer
